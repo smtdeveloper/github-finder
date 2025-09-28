@@ -1,10 +1,104 @@
-.avatar {
-    width: 100%;
+/* --- Dependencies --- */
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+/* --- Global helpers --- */
+.avatar { width: 100%; }
+.btn-block { width: 100%; }
+
+/* --- Cards (Users) --- */
+.user-card {
+  border-radius: 10px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+}
+.user-avatar {
+  width: 60px; height: 60px; object-fit: cover;
+  border: 2px solid #0d6efd;
 }
 
-.btn-block {
-    width: 100%;
+/* --- Navbar (gradient + glass) --- */
+.navbar-elevated {
+  position: relative;           /* paw-layer için bağlayıcı */
+  overflow: hidden;             /* taşanı kes */
+  background: linear-gradient(90deg, #0d6efd 0%, #6f42c1 100%);
+  box-shadow: 0 6px 20px rgba(13,110,253,.2);
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  backdrop-filter: saturate(140%) blur(6px);
 }
-@import '~bootstrap/scss/bootstrap.scss';
-@import '~bootstrap-icons/font/bootstrap-icons.scss';
 
+/* Brand badge */
+.brand-mark {
+  width: 34px; height: 34px; border-radius: 9999px;
+  background: rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.35);
+}
+.brand-icon { font-size: 1.05rem; color: #ffd76b; }
+.brand-title { letter-spacing: .2px; }
+
+/* Theme toggle button */
+.btn-ghost-light {
+  background: transparent; color: #fff;
+  border: 1px solid rgba(255,255,255,.35);
+  padding: .35rem .55rem; line-height: 1; border-radius: .6rem;
+}
+.btn-ghost-light:hover { background: rgba(255,255,255,.15); }
+
+/* --- Paws Layer --- */
+.paw-layer {
+  position: absolute; inset: 0; pointer-events: none;
+  z-index: 0; /* brand/butonlar üstte kalacak */
+}
+.navbar-brand, .navbar-collapse, .navbar-toggler {
+  position: relative; z-index: 1;
+}
+.paw {
+  position: absolute;
+  font-size: 1.4rem;                    /* scale ile büyür/küçülür */
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.18));
+}
+
+/* --- Light / Dark theming --- */
+
+/* Navbar dark tune */
+:root[data-bs-theme='dark'] .navbar-elevated {
+  background: linear-gradient(90deg, #0a58ca 0%, #5a33ad 100%);
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+
+/* Cards */
+:root[data-bs-theme='light'] .user-card { background: #fff; color: #212529; }
+:root[data-bs-theme='light'] .user-avatar { border-color: #0d6efd; }
+
+:root[data-bs-theme='dark'] .user-card { background: #1e1e1e; color: #f8f9fa; }
+:root[data-bs-theme='dark'] .user-avatar { border-color: #ffc107; }
+
+/* Paws color (tema uyumlu) */
+:root[data-bs-theme='light'] .paw { color: rgba(255,255,255,.65); }
+:root[data-bs-theme='dark']  .paw { color: rgba(255,255,255,.35); }
+
+/* Navbar daha ince */
+.navbar-elevated {
+  min-height: 54px;
+}
+
+/* Brand icon */
+.brand-icon {
+  font-size: 1.3rem;
+  color: #ffd76b;
+}
+
+/* Tema butonu minimal */
+.btn-ghost-light {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
